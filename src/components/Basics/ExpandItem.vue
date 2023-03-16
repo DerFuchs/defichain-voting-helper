@@ -18,7 +18,7 @@
 	<q-separator class="jelly-gradient q-mb-md" />
 
 	<q-slide-transition>
-		<q-card flat v-show="expanded">
+		<q-card flat v-show="expanded || forceExpand">
 			<q-card-section>
 				<slot name="default"></slot>
 			</q-card-section>
@@ -39,6 +39,11 @@ export default defineComponent({
 		headline: {
 			type: String,
 			required: true,
+		},
+		forceExpand: {
+			type: Boolean,
+			required: false,
+			default: false,
 		},
 	},
 
