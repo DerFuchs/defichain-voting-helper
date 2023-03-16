@@ -67,6 +67,8 @@
 							color="positive"
 							label="YES"
 							icon="fa-regular fa-square-check"
+							:loading="masternodes.active.length == 0"
+							@click="vote(proposal.proposalId, 'yes')"
 						/>
 						<div class="col-4">
 							<q-btn
@@ -75,7 +77,9 @@
 								label="NEUTRAL"
 								icon="fa-solid fa-ghost"
 								disable
+								:loading="masternodes.active.length == 0"
 								class="col-auto q-mx-xs"
+								@click="vote(proposal.proposalId, 'neutral')"
 							/>
 						</div>
 						<q-btn
@@ -84,6 +88,8 @@
 							color="negative"
 							label="NO"
 							icon="fa-regular fa-rectangle-xmark"
+							:loading="masternodes.active.length == 0"
+							@click="vote(proposal.proposalId, 'no')"
 						/>
 					</q-card-section>
 					<q-card-section>
@@ -98,12 +104,14 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import { openURL } from "quasar";
 
 import { useBasicsStore } from "stores/basics";
 import { useChainStore } from "stores/chain";
+import { useMasternodesStore } from "stores/masternodes";
+import { useProposalsStore } from "stores/proposals";
 
 export default defineComponent({
 	name: "ProposalItem",
@@ -116,19 +124,26 @@ export default defineComponent({
 	setup() {
 		const basics = useBasicsStore();
 		const chain = useChainStore();
+		const masternodes = useMasternodesStore();
+		const proposals = useProposalsStore();
 
-		// onBeforeMount(() => {
-		// 	masternodes.fetch();
-		// });
+		const sendingDecisionsToChain = ref(false);
 
-		// const runningProposals = computed(() => {
-		// 	return proposals.all.filter((proposal) => proposal.status === "Voting");
-		// });
+		async function vote(proposalId, decision) {
+			sendingDecisionsToChain.value = true;
+
+			const txIds = await proposals.vote(proposalId, decision);
+			console.log(txIds);
+
+			sendingDecisionsToChain.value = false;
+		}
 
 		return {
 			basics,
 			chain,
+			masternodes,
 			openURL,
+			vote,
 			//masternodes,
 		};
 	},

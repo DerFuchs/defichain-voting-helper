@@ -6,7 +6,7 @@ export const useMasternodesStore = defineStore("masternodes", () => {
   const node = useNodeStore();
   const fetching = ref(false);
 
-  const active = ref();
+  const active = ref([]);
 
   async function fetch() {
     if (!node.hasCredentials) return;

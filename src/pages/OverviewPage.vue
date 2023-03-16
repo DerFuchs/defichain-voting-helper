@@ -148,6 +148,7 @@
 					</q-card-section>
 				</q-card>
 			</div>
+
 			<div class="text-h6 q-pa-sm q-pl-md">
 				Currently Running Regular Votings ({{ proposals.regular.length }})
 			</div>

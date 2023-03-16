@@ -3,10 +3,12 @@ import { defineStore } from "pinia";
 //import { encode } from "base-64";
 //import { JsonRpcClient } from "@defichain/jellyfish-api-jsonrpc";
 import { useNodeStore } from "stores/node";
+import { useMasternodesStore } from "stores/masternodes";
 
 export const useProposalsStore = defineStore("proposals", () => {
   // basic variables
   const node = useNodeStore();
+  const masternodes = useMasternodesStore();
 
   // runtime variables & computed props
   const proposals = ref([]);
@@ -42,7 +44,18 @@ export const useProposalsStore = defineStore("proposals", () => {
     });
   });
 
-  function vote(proposalId, decision) {}
+  async function vote(proposalId, decision) {
+    let txIds = [];
+    await masternodes.active.forEach(async (masternode) => {
+      txIds.push = await node.client.governance.voteGov({
+        proposalId: proposalId,
+        masternodeId: masternode.id,
+        decision: decision,
+      });
+      //console.log(txIds);
+    });
+    return txIds;
+  }
 
   return {
     fetch,
