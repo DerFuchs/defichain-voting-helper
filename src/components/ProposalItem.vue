@@ -21,13 +21,15 @@
 					<q-card-section class="row">
 						<div class="col-6">
 							<q-btn
+								dense
 								color="primary"
 								unelevated
 								label="Open Details (Reddit)"
 								@click="openURL(proposal.context)"
 							/>
-
+							<br />
 							<q-btn
+								dense
 								@click="openURL('https://defiscan.live/governance')"
 								label="View On DeFiScan"
 								color="accent"

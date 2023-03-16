@@ -50,7 +50,10 @@
 			<masternode-list class="q-my-lg" />
 
 			<!-- --->
-			<div v-if="proposals.emergency.length > 0" class="text-h6 q-mt-lg">
+			<div
+				v-if="proposals.emergency.length > 0"
+				class="text-h6 q-mt-lg q-pa-sm q-pl-md"
+			>
 				Currently Running Emergency Votings
 			</div>
 			<q-separator
@@ -145,7 +148,7 @@
 					</q-card-section>
 				</q-card>
 			</div>
-			<div class="text-h6 q-mt-lg">
+			<div class="text-h6 q-pa-sm q-pl-md">
 				Currently Running Regular Votings ({{ proposals.regular.length }})
 			</div>
 			<q-separator class="jelly-gradient q-mb-md" />
@@ -212,10 +215,15 @@
 							</div>
 						</q-card-section>
 						<q-separator vertical class="jelly-gradient" inset />
-						<q-card-section class="col q-pa-md" horizontal>
-							When pressing one of the voting buttons, your decision will be
-							sent to DeFiChain immediately. You can change your decision at any
-							time until the voting ends.
+						<q-card-section class="col q-pa-md">
+							<p>
+								When pressing one of the voting buttons, your decision will be
+								sent to DeFiChain immediately by letting all of your master
+								nodes vote with your decision.
+							</p>
+							<p>
+								You can change your decision at any time until the voting ends.
+							</p>
 						</q-card-section>
 					</q-card-section>
 				</q-card>
