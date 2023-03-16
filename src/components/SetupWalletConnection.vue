@@ -41,7 +41,7 @@
 		/>
 		<q-checkbox
 			v-model="keepCredentials"
-			:model-value="node.credentialsLoadedFromLocalStorage"
+			:model-value="node.credentialsLoadedFromLocalStorage || keepCredentials"
 			label="keep credentials for next time"
 		/>
 		<br />
