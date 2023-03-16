@@ -1,5 +1,12 @@
 <template>
-	<expand-item name="masternodes" headline="Your Masternodes">
+	<expand-item
+		name="masternodes"
+		:headline="
+			masternodes?.active?.length > 0
+				? 'Your Masternodes (' + masternodes.active.length + ')'
+				: 'Your Masternodes'
+		"
+	>
 		<q-list separator>
 			<q-item v-for="(mn, index) in masternodes.active" :key="mn.id">
 				<q-item-section avatar>
