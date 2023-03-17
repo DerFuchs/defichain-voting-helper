@@ -10,7 +10,7 @@
 			DeFiChain Node, running alongside your DeFiChain Full Wallet. No need for
 			panic! It's easy!
 		</p>
-		<div v-if="platform.is.windows">
+		<div v-if="platform.is.win">
 			<p class="q-mb-xs">Open Explorer and navigate to the file:</p>
 			<i>C:\Users\username\.defi\defi.conf</i>
 			<p>
