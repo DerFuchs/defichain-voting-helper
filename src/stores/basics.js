@@ -5,7 +5,7 @@ import { useQuasar } from "quasar";
 export const useBasicsStore = defineStore(
   "basics",
   () => {
-    const appVersion = 0;
+    const appVersion = 1;
     const darkMode = computed(() => useQuasar().dark.isActive);
     const formatting = {
       currency: {
