@@ -17,28 +17,11 @@
 				expand-icon="fa-solid fa-angle-down"
 				:label="proposal.title"
 			>
-				<q-card flat :bordered="!basics.darkMode" class="text-center">
-					<q-card-section class="row">
-						<div class="col-6">
-							<q-btn
-								dense
-								color="primary"
-								unelevated
-								label="Open Details (Reddit)"
-								@click="openURL(proposal.context)"
-							/>
-							<br />
-							<q-btn
-								dense
-								@click="openURL('https://defiscan.live/governance')"
-								label="View On DeFiScan"
-								color="accent"
-								class="q-mt-sm"
-							/>
-						</div>
-						<div class="col-6">
-							Ending In Approx.<br />
-							<div class="text-h5 text-primary">
+				<q-card flat class="rounded-borders">
+					<q-card-section horizontal>
+						<q-card-section class="text-center" style="min-width: 320px">
+							<p class="q-my-none q-py-none">Concluding In Approx.</p>
+							<div class="text-h5 jelly-gradient-text">
 								{{
 									basics.timeLeft(
 										((proposal.proposalEndHeight - chain.blockHeight) * 30) /
@@ -47,55 +30,74 @@
 									)
 								}}
 							</div>
-							<br />
-							Ending At Block
-							{{ proposal.proposalEndHeight.toLocaleString("en-US") }}<br />
-							Blocks remaining:
-							{{
-								(proposal.proposalEndHeight - chain.blockHeight).toLocaleString(
-									"en-US"
-								)
-							}}<br />
-						</div>
-					</q-card-section>
-					<q-separator class="jelly-gradient" />
-					<q-card-section class="row">
-						<div class="col-12 text-body1 q-mb-md">Your Decision</div>
-						<q-btn
-							class="col-4"
-							unelevated
-							color="positive"
-							label="YES"
-							icon="fa-regular fa-square-check"
-							:loading="masternodes.active.length == 0"
-							@click="vote(proposal.proposalId, 'yes')"
-						/>
-						<div class="col-4">
+							<p>
+								At Block
+								<span class="text-primary">{{
+									proposal.proposalEndHeight.toLocaleString("en-US")
+								}}</span>
+							</p>
+							<p>
+								<q-btn
+									dense
+									color="primary"
+									unelevated
+									label="Open Details (Reddit)"
+									@click="openURL(proposal.context)"
+									class="full-width"
+								/>
+								<br />
+								<q-btn
+									dense
+									color="accent"
+									unelevated
+									@click="
+										openURL(
+											'https://defiscan.live/governance/' + proposal.proposalId
+										)
+									"
+									label="View On DeFiScan"
+									class="q-mt-sm full-width"
+								/>
+							</p>
+						</q-card-section>
+
+						<q-separator class="jelly-gradient" vertical inset />
+						<q-card-section class="full-width">
+							<div class="text-body1 q-mb-md">Your Decision</div>
 							<q-btn
+								class="full-width"
+								size="lg"
+								unelevated
+								color="positive"
+								label="Vote YES"
+								icon="fa-regular fa-square-check"
+								:loading="masternodes.active.length == 0"
+								@click="vote(proposal.proposalId, 'yes')"
+							/>
+
+							<q-btn
+								class="full-width q-my-sm"
+								size="sm"
 								unelevated
 								color="grey"
-								label="NEUTRAL"
+								label="Vote NEUTRAL"
 								icon="fa-solid fa-ghost"
 								disable
 								:loading="masternodes.active.length == 0"
-								class="col-auto q-mx-xs"
 								@click="vote(proposal.proposalId, 'neutral')"
 							/>
-						</div>
-						<q-btn
-							class="col-4"
-							unelevated
-							color="negative"
-							label="NO"
-							icon="fa-regular fa-rectangle-xmark"
-							:loading="masternodes.active.length == 0"
-							@click="vote(proposal.proposalId, 'no')"
-						/>
-					</q-card-section>
-					<q-card-section>
-						Voting neutral is not available due to a bug in DeFiChain's voting
-						system. Your neutral vote will count as a no. This will get fixed in
-						the future.
+
+							<q-btn
+								class="full-width"
+								size="lg"
+								unelevated
+								color="negative"
+								label="Vote NO"
+								icon="fa-regular fa-rectangle-xmark"
+								:loading="masternodes.active.length == 0"
+								@click="vote(proposal.proposalId, 'no')"
+							/>
+						</q-card-section>
 					</q-card-section>
 				</q-card>
 			</q-expansion-item>
