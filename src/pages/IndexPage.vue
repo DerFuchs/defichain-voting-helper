@@ -1,10 +1,9 @@
 <template>
 	<q-page class="flex flex-center q-pa-md">
 		<div>
-			<div class="text-h6">DeFiChain Vote Helper</div>
+			<div class="text-h5">Before You Proceed</div>
 			<p class="text-body1">
-				Please read the following instructions and notes carfully before
-				continuing:
+				Please read the following notes carfully before continuing:
 			</p>
 			<p>
 				This application is used to streamline the voting process on DeFiChain -
@@ -17,24 +16,26 @@
 			</p>
 			<p>
 				For enabling the ability to vote by using this app, your wallet has not
-				only to run but also to be unlocked manually by yourself. This is
-				exactly the point where this app is getting dangerous.
+				only to run but also to be unlocked manually by yourself. This is the
+				point where this app is getting dangerous.
+			</p>
+			<p class="text-h6">Risks Involved</p>
+			<p>
+				After being unlocked, this app can theoretically do anything with your
+				wallet. This means: It could do transactions, send tokens, manipulate
+				vaults and masternodes, etc.
 			</p>
 			<p>
-				After being unlocked, this app can theoretically do with your wallet
-				whatever you could do by yourself. This means: It could do transactions,
-				send tokens, manipulate vaults and masternodes, etc.
+				This app has clearly not implementet any writing actions besides the
+				pure voting process. But you can't be sure. You also could have been
+				victim of a cyber attack and run a variant of this software which has
+				been manipulated by an attacker.
 			</p>
+			<p class="text-h6">Use at your own risk</p>
 			<p>
-				I as the developer of this app have clearly not implementet anything
-				besides the pure voting process. But you can't be sure. You also could
-				have been victim of a cyber attack and run a variant of this software
-				which has been manipulated by an attacker.
-			</p>
-			<p>
-				I as the developer of this app strongly advise against using it from a
-				security point-of-view. I assume no liability for damages and losses of
-				any kind. Use at your own risk.
+				It is strongly discouraged to use this app from a security
+				point-of-view. The developer of this app assumes no liability for
+				damages and losses of any kind.
 			</p>
 			<p class="text-warning bg-negative text-bold q-pa-sm">
 				To be as clear as possible on that: THIS APP CAN POTENTIALLY BE HARMFUL
@@ -50,6 +51,7 @@
 			</p>
 			<p>
 				<q-btn
+					unelevated
 					color="primary"
 					label="continue"
 					:disable="!proceed"
