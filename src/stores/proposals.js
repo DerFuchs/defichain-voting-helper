@@ -13,15 +13,15 @@ export const useProposalsStore = defineStore("proposals", () => {
   // runtime variables & computed props
   const proposals = ref([]);
 
+  const votes = ref([]);
+
   /**
    * Fetches proposals from the configured (local) DeFiChain node
    */
   function fetch() {
     if (!node.hasCredentials) return;
 
-    const client = node.client;
-    //const client = new JsonRpcClient(requestUrl.value, rpcClientOptions);
-    client.governance.listGovProposals().then((result) => {
+    node.client.governance.listGovProposals().then((result) => {
       proposals.value = result;
     });
   }
@@ -70,6 +70,31 @@ export const useProposalsStore = defineStore("proposals", () => {
     return txIds;
   }
 
+  async function getUserVotes(proposalId) {
+    if (!node.hasCredentials) return;
+
+    const result = await node.client.governance.listGovProposalVotes({
+      proposalId: proposalId,
+      masternode: "mine",
+      aggregate: true,
+    });
+
+    if (result.length == 0) {
+      return "undecided";
+    }
+    if (result[0].yes > 0) {
+      return "yes";
+    }
+    if (result[0].no > 0) {
+      return "no";
+    }
+    if (result[0].neutral > 0) {
+      return "neutral";
+    }
+
+    return "undecided";
+  }
+
   return {
     fetch,
     all: proposals,
@@ -78,5 +103,6 @@ export const useProposalsStore = defineStore("proposals", () => {
     emergency,
 
     vote,
+    getUserVotes,
   };
 });

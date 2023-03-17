@@ -2,11 +2,10 @@
 	<div class="row">
 		<div class="col-auto">
 			<q-avatar
-				color="accent"
+				:color="decisionAvatar.color"
 				text-color="white"
 				class="q-mr-sm"
-				icon="fa-regular fa-hourglass-half"
-				icon-color="primary"
+				:icon="decisionAvatar.icon"
 			>
 			</q-avatar>
 		</div>
@@ -72,7 +71,10 @@
 								label="Vote YES"
 								icon="fa-regular fa-square-check"
 								:loading="masternodes.active.length == 0"
-								@click="vote(proposal.proposalId, 'yes')"
+								@click="
+									vote(proposal.proposalId, 'yes');
+									decision = 'yes';
+								"
 							/>
 
 							<q-btn
@@ -84,7 +86,10 @@
 								icon="fa-solid fa-ghost"
 								disable
 								:loading="masternodes.active.length == 0"
-								@click="vote(proposal.proposalId, 'neutral')"
+								@click="
+									vote(proposal.proposalId, 'neutral');
+									decision = 'neutral';
+								"
 							/>
 
 							<q-btn
@@ -95,7 +100,10 @@
 								label="Vote NO"
 								icon="fa-regular fa-rectangle-xmark"
 								:loading="masternodes.active.length == 0"
-								@click="vote(proposal.proposalId, 'no')"
+								@click="
+									vote(proposal.proposalId, 'no');
+									decision = 'no';
+								"
 							/>
 						</q-card-section>
 					</q-card-section>
@@ -106,7 +114,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onBeforeMount, computed } from "vue";
 
 import { openURL } from "quasar";
 
@@ -123,11 +131,36 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup() {
+	setup(props) {
 		const basics = useBasicsStore();
 		const chain = useChainStore();
 		const masternodes = useMasternodesStore();
 		const proposals = useProposalsStore();
+		const decision = ref("undecided");
+		const decisionAvatar = computed(() => {
+			switch (decision.value) {
+				case "yes":
+					return {
+						color: "positive",
+						icon: "fa-regular fa-square-check",
+					};
+				case "neutral":
+					return {
+						color: "grey",
+						icon: "fa-solid fa-ghost",
+					};
+				case "no":
+					return {
+						color: "negative",
+						icon: "fa-regular fa-square-check",
+					};
+				default:
+					return {
+						color: "accent",
+						icon: "fa-regular fa-hourglass-half",
+					};
+			}
+		});
 
 		const sendingDecisionsToChain = ref(false);
 
@@ -135,10 +168,18 @@ export default defineComponent({
 			sendingDecisionsToChain.value = true;
 
 			const txIds = await proposals.vote(proposalId, decision);
-			console.log(txIds);
+			//await fetchDecision();
 
 			sendingDecisionsToChain.value = false;
 		}
+
+		async function fetchDecision() {
+			decision.value = await proposals.getUserVotes(props.proposal.proposalId);
+		}
+
+		onBeforeMount(() => {
+			fetchDecision();
+		});
 
 		return {
 			basics,
@@ -146,7 +187,9 @@ export default defineComponent({
 			masternodes,
 			openURL,
 			vote,
-			//masternodes,
+			decision,
+			decisionAvatar,
+			fetchDecision,
 		};
 	},
 });
