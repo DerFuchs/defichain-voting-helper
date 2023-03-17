@@ -1,5 +1,5 @@
 <template>
-	<q-page class="q-pa-md" style="max-width: 800px">
+	<q-page class="q-pa-md" style="max-width: 800px; margin: 0 auto">
 		<setup-wallet-connection />
 
 		<expand-item name="ocgInfo" headline="What's On Chain Governance?">
@@ -224,6 +224,11 @@
 							</p>
 							<p>
 								You can change your decision at any time until the voting ends.
+							</p>
+							<p class="text-warning">
+								Voting neutral is not available due to a bug in DeFiChain's
+								voting system. Your neutral vote will count as a no. This will
+								get fixed in the future.
 							</p>
 						</q-card-section>
 					</q-card-section>

@@ -9,7 +9,6 @@
 		<q-btn
 			flat
 			dense
-			round
 			icon="fa-solid fa-angle-down"
 			:class="{ 'rotate-180': expanded }"
 			style="transition: transform 0.3s"

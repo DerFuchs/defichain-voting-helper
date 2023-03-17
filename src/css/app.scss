@@ -9,3 +9,16 @@
     hsl(183deg 100% 50%) 100%
   ) !important;
 }
+
+.jelly-gradient-text {
+  background-image: linear-gradient(
+    25deg,
+    hsl(320deg 100% 40%) 5%,
+    hsl(309deg 100% 45%) 15%,
+    hsl(276deg 100% 46%) 64%,
+    hsl(203deg 100% 50%) 81%,
+    hsl(183deg 100% 50%) 100%
+  ) !important;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
