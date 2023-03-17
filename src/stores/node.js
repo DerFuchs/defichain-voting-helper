@@ -22,8 +22,6 @@ export const useNodeStore = defineStore("node", () => {
   init();
 
   // runtime variables & computed props
-  //const credentials = computed(() => encode(user.value + ":" + secret.value));
-  //const credentials = computed(() => encode(rpcauth.value));
   const requestUrl = computed(() => `http://${rpchost.value}:${rpcport.value}`);
   const rpcClientOptions = computed(() => {
     return {
@@ -33,7 +31,6 @@ export const useNodeStore = defineStore("node", () => {
     };
   });
 
-  //const client = new JsonRpcClient(requestUrl.value, rpcClientOptions);
   const client = computed(() => {
     if (!hasCredentials.value) return null;
     return new JsonRpcClient(requestUrl.value, rpcClientOptions.value);
