@@ -1,12 +1,12 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-//import { encode } from "base-64";
-//import { JsonRpcClient } from "@defichain/jellyfish-api-jsonrpc";
+import { useBasicsStore } from "stores/basics";
 import { useNodeStore } from "stores/node";
 import { useMasternodesStore } from "stores/masternodes";
 
 export const useProposalsStore = defineStore("proposals", () => {
   // basic variables
+  const basics = useBasicsStore();
   const node = useNodeStore();
   const masternodes = useMasternodesStore();
 
@@ -47,11 +47,24 @@ export const useProposalsStore = defineStore("proposals", () => {
   async function vote(proposalId, decision) {
     let txIds = [];
     await masternodes.active.forEach(async (masternode) => {
-      txIds.push = await node.client.governance.voteGov({
-        proposalId: proposalId,
-        masternodeId: masternode.id,
-        decision: decision,
-      });
+      try {
+        txIds.push = await node.client.governance.voteGov({
+          proposalId: proposalId,
+          masternodeId: masternode.id,
+          decision: decision,
+        });
+      } catch (error) {
+        if (
+          error.payload.code == -25 &&
+          error.payload.message.includes("missing key")
+        ) {
+          basics.error = {
+            headline: "Your Wallet Is Locked",
+            text: "Please unlock your wallet first.<br /> Then try again.",
+          };
+          console.error(basics.error);
+        }
+      }
       //console.log(txIds);
     });
     return txIds;

@@ -1,4 +1,4 @@
-import { computed, inject } from "vue";
+import { computed, inject, ref } from "vue";
 import { defineStore } from "pinia";
 import { useQuasar } from "quasar";
 
@@ -35,11 +35,14 @@ export const useBasicsStore = defineStore(
       return duration.toHuman({ unitDisplay: "short" });
     }
 
+    const error = ref(null);
+
     return {
       appVersion,
       darkMode,
       formatting,
       timeLeft,
+      error,
     };
   }
   // {

@@ -42,14 +42,55 @@
 			</q-list>
 		</q-drawer> -->
 
-		<q-page-container>
+		<q-page-container :class="{ 'bg-grey-3': !basics.darkMode }">
+			<!-- error dialog -->
+			<q-dialog v-model="showError">
+				<q-card flat color="primary">
+					<q-card-section class="row items-center q-py-sm">
+						<div class="text-body1">{{ basics.error.headline }}</div>
+						<q-space />
+						<q-btn
+							icon="fa-regular fa-x"
+							size="sm"
+							flat
+							round
+							dense
+							@click="basics.error = null"
+						/>
+					</q-card-section>
+					<q-separator class="jelly-gradient" />
+					<q-card-section horizontal>
+						<q-card-section>
+							<q-icon
+								name="fa-solid fa-unlock-keyhole"
+								size="xl"
+								class="jelly-gradient-text"
+							></q-icon>
+						</q-card-section>
+						<q-card-section>
+							<div v-html="basics.error.text"></div>
+						</q-card-section>
+					</q-card-section>
+					<q-card-action>
+						<q-btn
+							class="full-width"
+							unelevated
+							color="primary"
+							label="okay"
+							@click="basics.error = null"
+						/>
+					</q-card-action>
+				</q-card>
+			</q-dialog>
+
+			<!-- page content -->
 			<router-view />
 		</q-page-container>
 	</q-layout>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import { openURL } from "quasar";
 
 import { useBasicsStore } from "stores/basics";
@@ -73,6 +114,7 @@ export default defineComponent({
 	setup() {
 		const basics = useBasicsStore();
 		const leftDrawerOpen = ref(false);
+		const showError = computed(() => basics.error != null);
 
 		return {
 			basics,
@@ -82,6 +124,7 @@ export default defineComponent({
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
 			openURL,
+			showError,
 		};
 	},
 });
