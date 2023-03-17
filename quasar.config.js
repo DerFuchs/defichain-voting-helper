@@ -50,7 +50,8 @@ module.exports = configure(function (/* ctx */) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       target: {
-        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
+        browser: ["es2019", "chrome87"],
+        //browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16",
       },
 
@@ -88,7 +89,7 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {
         dark: "auto",
-        //dark: "false",
+        // dark: "false",
       },
 
       // iconSet: 'material-icons', // Quasar icon set
@@ -189,7 +190,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "defichain.votings.helper",
+        appId: "app.defichain.votings",
       },
     },
 
