@@ -2,6 +2,9 @@
 
 A desktop app for easy voting with your DeFiChain master nodes.
 
+## Restrictions
+This software only works when you're running a full node on the same computer which is holding the owner addresses for your masternodes. This full node is usually the desktop wallet app. This app connects to that wallet and performs actions remotely. 
+
 ## Latest version for Windows
 https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.exe
 
@@ -11,7 +14,7 @@ https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.app.zip
 
 ## Usage
 
-1. Start your DeFiChain Full Wallet on the same computer
+1. Start your DeFiChain Full Wallet, holding your masternode's owner addresses on the same computer
 2. Open the app
 3. Set up the connection to your Full Wallet by providing the "rpcauth" key from the defi.conf file.
 
