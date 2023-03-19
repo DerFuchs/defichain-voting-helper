@@ -23,7 +23,13 @@ Windows: C:\Users\username\.defi\defi.conf
 
 MacOS: ~/Library/Application Support/Defi/.defi/defi.conf
 
+## Contact
+@dt_buzzjoe on Twitter (https://twitter.com/dt_buzzjoe)
+@Buzzjoe on Telegram (https://t.me/Buzzjoe)
 
+![Overview](https://raw.githubusercontent.com/DerFuchs/defichain-voting-helper/main/img/screenshot1.png)
+![Voting Detail](https://raw.githubusercontent.com/DerFuchs/defichain-voting-helper/main/img/screenshot2.png)
+![Node Connection](https://raw.githubusercontent.com/DerFuchs/defichain-voting-helper/main/img/screenshot3.png)
 
 ## Build on your own
 
