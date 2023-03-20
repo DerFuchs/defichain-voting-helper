@@ -46,6 +46,18 @@ Yes! It does not matter where your MN is hosted because it is the OWNER address 
 
 NO! The only trusted source to download this app is the domain https://defichain-votings.com. I will NEVER send you this app from any other source. If this happens to you, the other guy is most likely an attacker, pretending to be me. Please report this account immediately and do NOT download or execute the application!
 
+### Is it secure to save my rpcauth key within the app?
+
+Decide on your own. These are the key facts:
+- The key itself is being saved in an encrypted app container.
+- Almost every software on your computer can access the defi.conf file.
+- The key is only allowed to perform read actions per default. Writing only gets possible when your wallet is unlocked.
+
+### Mac Users: I can't find the defi.conf file
+
+Did you try to open the folder ```~/Library/Application Support/Defi/.defi/``` or was it ```/Library/Application Support/Defi/.defi/```? The little ```
+~/``` stands for a short link to your user folder. You might have been searching withing the ```/Library``` base folder on your hard disk. That's the wrong folder. ```~/Library``` is also hidden by default in Finder. Therefore, just open Finder, click on "Go to" in the menu bar, then "Go to folder" and put ```~/Library/Application Support/Defi/.defi/``` into the input field. This should open the folder you're looking for.
+
 ## This is how it looks
 
 ![Overview](https://raw.githubusercontent.com/DerFuchs/defichain-voting-helper/main/img/screenshot1.png)
