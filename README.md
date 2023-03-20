@@ -9,7 +9,11 @@ This software only works when you're running a full node on the same computer wh
 https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.exe
 
 ## Latest version for MacOS
-https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.app.zip
+Apple Silicon (M1 / M2): https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.app.zip
+
+Intel: https://defichain-votings.com/app/DeFiChain-Voting-Helper-App-Intel.dmg
+
+
 (Unzip => Right click => Open || Double click will not work because it's not signed yet.)
 
 ## Usage
