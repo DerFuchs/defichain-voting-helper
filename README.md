@@ -11,10 +11,14 @@ https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.exe
 ## Latest version for MacOS
 Apple Silicon (M1 / M2): https://defichain-votings.com/app/DeFiChain%20Voting%20Helper%20App.app.zip
 
+(Unzip => Right click => Open || Double click will not work because it's not signed yet.)
+
+
 Intel: https://defichain-votings.com/app/DeFiChain-Voting-Helper-App-Intel.dmg
 
+(Move to Applications => Right click => Open || Double click will not work because it's not signed yet.)
 
-(Unzip => Right click => Open || Double click will not work because it's not signed yet.)
+
 
 ## Usage
 
@@ -23,9 +27,9 @@ Intel: https://defichain-votings.com/app/DeFiChain-Voting-Helper-App-Intel.dmg
 3. Set up the connection to your Full Wallet by providing the "rpcauth" key from the defi.conf file.
 
 ### defi.conf location
-Windows: C:\Users\username\.defi\defi.conf
+Windows: ```C:\Users\username\.defi\defi.conf```
 
-MacOS: ~/Library/Application Support/Defi/.defi/defi.conf
+MacOS: ```~/Library/Application Support/Defi/.defi/defi.conf```
 
 ## Contact
 @dt_buzzjoe on Twitter (https://twitter.com/dt_buzzjoe)
