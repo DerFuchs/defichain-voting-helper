@@ -152,7 +152,7 @@ export default defineComponent({
 				case "no":
 					return {
 						color: "negative",
-						icon: "fa-regular fa-square-check",
+						icon: "fa-regular fa-rectangle-xmark",
 					};
 				default:
 					return {
