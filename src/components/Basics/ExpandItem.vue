@@ -4,7 +4,10 @@
 		style="cursor: pointer"
 		@click="expanded = !expanded"
 	>
-		<span>{{ headline }}</span>
+		<span>
+			{{ headline }}
+			<slot name="headline"></slot>
+		</span>
 		<q-space></q-space>
 		<q-btn
 			flat
@@ -37,7 +40,7 @@ export default defineComponent({
 		},
 		headline: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		forceExpand: {
 			type: Boolean,
