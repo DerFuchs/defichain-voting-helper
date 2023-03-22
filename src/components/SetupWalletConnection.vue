@@ -19,18 +19,50 @@
 			</p>
 		</div>
 		<div v-if="platform.is.mac">
-			<p class="q-mb-xs">Open Finder and navigate to the file:</p>
-			<i>~/Library/Application Support/Defi/.defi/defi.conf</i>
-			<p class="q-mt-xs">
-				Alternatively, open Finder, have a look at the menu bar and choose "Go
-				To" => "Go To Folder" and paste in the path from above.
-			</p>
-			<p>
-				Open the file <i>defi.conf</i> with a text editor like "Text Edit"
-				(right-click => open => "TextEdit.app")
-			</p>
+			<ol>
+				<li>
+					<p class="q-mt-xs">
+						Open Finder, have a look at the menu bar and choose
+						<i>"Go To"</i> => <i>"Go To Folder"</i>, paste the following in and hit enter:
+            <pre class="q-pa-sm bg-black text-white">
+~/Library/Application Support/Defi/.defi/defi.conf
+            </pre>
+						<q-btn
+							dense
+							color="accent"
+							size="sm"
+							@click="
+								copyToClipboard(
+									'~/Library/Application Support/Defi/.defi/defi.conf'
+								)
+							"
+							icon="fa-regular fa-clipboard"
+							label="copy to clipboard"
+						/>
+
+					</p>
+				</li>
+				<li>
+					<p>
+						Open the file <i>defi.conf</i> with a text editor like "Text Edit"
+						(right-click => open => "TextEdit.app")
+					</p>
+				</li>
+				<li>
+					<p>Find <i>rpcauth</i> and <i>rpcport</i> keys. They look like:</p>
+					<pre class="q-pa-sm bg-black text-white">
+rpcauth=fOdwcsXB:nvg5oc9722r3jqm4cz9ncqlf9n64rit6h4inq71pis4zfrry8cav295bf5aq0h60
+rpcport=8554
+          </pre>
+				</li>
+				<li>
+					<p>
+						Copy everything after the equals sign (=) and paste into these text
+						fields:
+					</p>
+				</li>
+			</ol>
 		</div>
-		<p>Find these two keys and put their values in these text fields:</p>
 		<q-input v-model="rpcauth" outlined type="text" label="rpcauth" />
 		<q-input
 			v-model="rpcport"
@@ -42,7 +74,7 @@
 		<q-checkbox
 			v-model="keepCredentials"
 			:model-value="node.credentialsLoadedFromLocalStorage || keepCredentials"
-			label="keep credentials for next time"
+			label="keep credentials for next time (it's safe)"
 		/>
 		<br />
 		<q-btn
@@ -57,7 +89,7 @@
 <script>
 import { defineComponent, onBeforeMount, ref } from "vue";
 
-import { useQuasar } from "quasar";
+import { useQuasar, copyToClipboard } from "quasar";
 
 import { useNodeStore } from "stores/node";
 import { useChainStore } from "stores/chain";
@@ -105,8 +137,7 @@ export default defineComponent({
 			rpcport,
 			keepCredentials,
 			saveCredentials,
-			//basics,
-			//chain,
+			copyToClipboard,
 		};
 	},
 });
