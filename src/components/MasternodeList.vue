@@ -1,12 +1,14 @@
 <template>
-	<expand-item
-		name="masternodes"
-		:headline="
-			masternodes?.active?.length > 0
-				? 'Your Masternodes (' + masternodes.active.length + ')'
-				: 'Your Masternodes'
-		"
-	>
+	<expand-item name="masternodes">
+		<template #headline>
+			<q-spinner v-if="masternodes?.fetching"></q-spinner>
+			<div>
+				{{ headline }}
+				<q-badge class="jelly-gradient" align="top">
+					{{ masternodes?.active?.length }}
+				</q-badge>
+			</div>
+		</template>
 		<q-list separator>
 			<q-item v-for="(mn, index) in masternodes.active" :key="mn.id">
 				<q-item-section avatar>
@@ -52,12 +54,25 @@ export default defineComponent({
 			}
 		});
 
-		const runningProposals = computed(() => {
-			return proposals.all.filter((proposal) => proposal.status === "Voting");
+		const headline = computed(() => {
+			if (masternodes?.fetching) {
+				return "Loading Your Masternodes...";
+			}
+
+			if (masternodes?.active?.length == 0) {
+				return "Looks like you don't have any active masternodes.";
+			}
+
+			if (masternodes?.active?.length == 1) {
+				return "Your Masternode";
+			}
+
+			return "Your Masternodes";
 		});
 
 		return {
 			masternodes,
+			headline,
 		};
 	},
 });
