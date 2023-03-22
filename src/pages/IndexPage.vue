@@ -3,7 +3,10 @@
 		<q-card flat>
 			<q-card-section>
 				<div class="text-h5">Before You Proceed</div>
-				<p class="text-body1">Please read the following notes carfully.</p>
+				<q-separator class="jelly-gradient" />
+				<p class="text-body1 q-mt-sm">
+					Please read the following notes carfully.
+				</p>
 				<p>
 					This application is used to streamline the voting process on DeFiChain
 					- To make it easy and convienent to vote, even when running multiple
@@ -20,8 +23,8 @@
 				</p>
 				<p class="text-h6">Risks Involved</p>
 				<p>
-					After being unlocked, this app can theoretically do anything with your
-					wallet. This means: It could do transactions, send tokens, manipulate
+					After being unlocked, this app could do anything with your wallet.
+					This means: It could perform transactions, send tokens, manipulate
 					vaults and masternodes, etc.
 				</p>
 				<p>
