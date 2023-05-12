@@ -1,12 +1,14 @@
 <template>
 	<expand-item name="masternodes">
 		<template #headline>
-			<q-spinner v-if="masternodes?.fetching"></q-spinner>
-			<div>
-				{{ headline }}
-				<q-badge class="jelly-gradient" align="top">
-					{{ masternodes?.active?.length }}
-				</q-badge>
+			<div class="row">
+				<q-spinner v-if="masternodes?.fetching" class="q-mr-md"></q-spinner>
+				<div>
+					{{ headline }}
+					<q-badge class="jelly-gradient" align="top">
+						{{ masternodes?.active?.length }}
+					</q-badge>
+				</div>
 			</div>
 		</template>
 		<q-list separator>
