@@ -256,12 +256,7 @@ export default defineComponent({
 			}
 		});
 		const showVotingPanel = ref(false);
-		//const txIds = ref([]);
-		const txIds = ref([
-			"90b0aa61c4a928190f1c8dd0cc06f0e5b7b052bc59943978becc0298ea26caaf",
-			"4b78716197fe9593a7145ee0ea86f1231f3434560d44be8d0fb68041f114333b",
-			"c16fa329b37c2e175ea5f6e96aeafd76c153c25dac390b1e63068af05e1d780f",
-		]);
+		const txIds = ref([]);
 		const finishedTx = ref([]);
 		const watchedTx = ref([]);
 
