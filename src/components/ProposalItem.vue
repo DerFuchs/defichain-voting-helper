@@ -135,7 +135,7 @@
 							</div>
 						</q-card-section>
 					</q-card-section>
-					<q-card-section>
+					<q-card-section v-if="watchedTx.length > 0">
 						<q-list bordered class="rounded-borders">
 							<q-expansion-item
 								header-class="text-left text-white"
@@ -297,7 +297,7 @@ export default defineComponent({
 						clearInterval(interval);
 					})
 					.catch((err) => {});
-			}, 1000);
+			}, 5000);
 		}
 
 		const ocean = new WhaleApiClient({
