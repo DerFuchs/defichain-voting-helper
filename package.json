@@ -13,17 +13,17 @@
   "dependencies": {
     "@defichain/jellyfish-api-jsonrpc": "^3.29.1",
     "@electron/remote": "^2.0.9",
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.16.3",
     "axios": "^1.2.1",
     "base-64": "^1.0.0",
     "luxon": "^3.3.0",
     "pinia": "^2.0.11",
-    "quasar": "^2.6.0",
+    "quasar": "^2.12.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@quasar/app-vite": "^1.0.0",
+    "@quasar/app-vite": "^1.4.2",
     "@vue/devtools": "^6.5.0",
     "autoprefixer": "^10.4.2",
     "electron": "^23.1.3",
