@@ -13,8 +13,6 @@ export const useProposalsStore = defineStore("proposals", () => {
   // runtime variables & computed props
   const proposals = ref([]);
 
-  const votes = ref([]);
-
   /**
    * Fetches proposals from the configured (local) DeFiChain node
    */
@@ -36,37 +34,38 @@ export const useProposalsStore = defineStore("proposals", () => {
     );
   });
 
-  const emergency = computed(() => {
+  const special = computed(() => {
     return running.value.filter((proposal) => {
-      // if (proposal?.options?.includes("emergency")) {)
-      // console.log(proposal);
       return proposal?.options?.includes("emergency");
     });
   });
 
   async function vote(proposalId, decision) {
     let txIds = [];
-    await masternodes.active.forEach(async (masternode) => {
-      try {
-        txIds.push = await node.client.governance.voteGov({
-          proposalId: proposalId,
-          masternodeId: masternode.id,
-          decision: decision,
-        });
-      } catch (error) {
-        if (
-          error.payload.code == -25 &&
-          error.payload.message.includes("missing key")
-        ) {
-          basics.error = {
-            headline: "Your Wallet Is Locked",
-            text: "Please unlock your wallet first.<br /> Then try again.",
-          };
-          console.error(basics.error);
+    await Promise.all(
+      masternodes.active.map(async (masternode) => {
+        try {
+          let result = await node.client.governance.voteGov({
+            proposalId: proposalId,
+            masternodeId: masternode.id,
+            decision: decision,
+          });
+          console.log(result);
+          txIds.push(result);
+        } catch (error) {
+          if (
+            error.payload.code == -25 &&
+            error.payload.message.includes("missing key")
+          ) {
+            basics.error = {
+              headline: "Your Wallet Is Locked",
+              text: "Please unlock your wallet first.<br /> Then try again.",
+            };
+            console.error(basics.error);
+          }
         }
-      }
-      //console.log(txIds);
-    });
+      })
+    );
     return txIds;
   }
 
@@ -100,7 +99,7 @@ export const useProposalsStore = defineStore("proposals", () => {
     all: proposals,
     running,
     regular,
-    emergency,
+    special,
 
     vote,
     getUserVotes,
