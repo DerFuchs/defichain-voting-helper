@@ -78,6 +78,7 @@
 									<span class="text-h5 text-uppercase">{{ decision }}</span>
 								</div>
 								<q-btn
+									v-if="decision != 'undecided'"
 									@click="showVotingPanel = !showVotingPanel"
 									class="full-width q-mt-md"
 									size="md"
@@ -89,7 +90,7 @@
 								></q-btn>
 							</div>
 							<div class="text-body1 q-mb-md" v-else>Please Vote:</div>
-							<div v-if="!decision || showVotingPanel">
+							<div v-if="decision == 'undecided' || showVotingPanel">
 								<q-btn
 									class="full-width"
 									size="lg"

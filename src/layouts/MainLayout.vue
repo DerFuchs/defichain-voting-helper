@@ -11,7 +11,10 @@
 					@click="toggleLeftDrawer"
 				/> -->
 
-				<q-toolbar-title> DeFiChain Voting Helper </q-toolbar-title>
+				<q-toolbar-title>
+					<q-avatar><q-img src="img/logo.png" /></q-avatar> DeFiChain Voting
+					Helper
+				</q-toolbar-title>
 
 				<div>
 					Version {{ basics.appVersion }}
