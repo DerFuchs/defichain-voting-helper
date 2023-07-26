@@ -63,6 +63,13 @@ export const useProposalsStore = defineStore("proposals", () => {
             };
             console.error(basics.error);
           }
+          if (error.payload.code == -10) {
+            basics.error = {
+              headline: "Your Wallet Is Not Synced",
+              text: "Please let your wallet sync first.<br /> Then try again.",
+            };
+            console.error(basics.error);
+          }
         }
       })
     );
