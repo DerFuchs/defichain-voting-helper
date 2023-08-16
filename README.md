@@ -122,13 +122,13 @@ quasar build -m electron -T win32 --arch x64
 For Apple Silicon:
 
 ```bash
-quasar build -m electron -T macOS -arch arm64
+quasar build -m electron -T macOS --arch arm64
 ```
 
 For Intel Macs
 
 ```bash
-quasar build -m electron -T macOS -arch x64
+quasar build -m electron -T macOS --arch x64
 ```
 
 ## Geek Land^2
