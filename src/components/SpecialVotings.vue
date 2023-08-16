@@ -7,12 +7,13 @@
 			</q-badge>
 		</div>
 		<q-separator class="jelly-gradient q-mb-md" />
-		<div v-if="proposals.special.length > 0" class="q-mb-md">
+		<div v-if="proposals.special.length > 0">
 			<proposal-item
 				v-for="proposal in proposals.special"
 				:key="proposal.proposalId"
 				:proposal="proposal"
 				type="special"
+				class="q-mb-md"
 			/>
 		</div>
 	</div>

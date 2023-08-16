@@ -36,46 +36,35 @@
 	</expand-item>
 </template>
 
-<script>
-import { defineComponent, computed, onBeforeMount } from "vue";
+<script setup>
+import { computed, onBeforeMount } from "vue";
 import { useNodeStore } from "stores/node";
 import { useMasternodesStore } from "stores/masternodes";
 
 import ExpandItem from "components/Basics/ExpandItem.vue";
 
-export default defineComponent({
-	name: "MasternodeList",
-	components: { ExpandItem },
-	setup() {
-		const node = useNodeStore();
-		const masternodes = useMasternodesStore();
+const node = useNodeStore();
+const masternodes = useMasternodesStore();
 
-		onBeforeMount(() => {
-			if (node.hasCredentials) {
-				masternodes.fetch();
-			}
-		});
+onBeforeMount(() => {
+	if (node.hasCredentials) {
+		masternodes.fetch();
+	}
+});
 
-		const headline = computed(() => {
-			if (masternodes?.fetching) {
-				return "Loading Your Masternodes...";
-			}
+const headline = computed(() => {
+	if (masternodes?.fetching) {
+		return "Loading Your Masternodes...";
+	}
 
-			if (masternodes?.active?.length == 0) {
-				return "Looks like you don't have any active masternodes.";
-			}
+	if (masternodes?.active?.length == 0) {
+		return "Looks like you don't have any active masternodes.";
+	}
 
-			if (masternodes?.active?.length == 1) {
-				return "Your Masternode";
-			}
+	if (masternodes?.active?.length == 1) {
+		return "Your Masternode";
+	}
 
-			return "Your Masternodes";
-		});
-
-		return {
-			masternodes,
-			headline,
-		};
-	},
+	return "Your Masternodes";
 });
 </script>

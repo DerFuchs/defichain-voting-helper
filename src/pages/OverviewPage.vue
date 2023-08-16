@@ -49,7 +49,7 @@
 
 		<div v-if="node.hasCredentials">
 			<!-- List of Masternodes--->
-			<masternode-list class="q-my-lg" />
+			<masternode-list />
 		</div>
 
 		<div class="text-h3">Proposals</div>

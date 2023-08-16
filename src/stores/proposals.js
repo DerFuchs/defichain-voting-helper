@@ -42,8 +42,10 @@ export const useProposalsStore = defineStore("proposals", () => {
 
   async function vote(proposalId, decision) {
     let txIds = [];
+
     await Promise.all(
       masternodes.active.map(async (masternode) => {
+        console.log(masternode);
         try {
           let result = await node.client.governance.voteGov({
             proposalId: proposalId,
@@ -53,6 +55,8 @@ export const useProposalsStore = defineStore("proposals", () => {
           console.log(result);
           txIds.push(result);
         } catch (error) {
+          console.error(error);
+
           if (
             error.payload.code == -25 &&
             error.payload.message.includes("missing key")
@@ -60,16 +64,35 @@ export const useProposalsStore = defineStore("proposals", () => {
             basics.error = {
               headline: "Your Wallet Is Locked",
               text: "Please unlock your wallet first.<br /> Then try again.",
+              icon: "fa-solid fa-lock",
             };
-            console.error(basics.error);
           }
+
           if (error.payload.code == -10) {
             basics.error = {
               headline: "Your Wallet Is Not Synced",
               text: "Please let your wallet sync first.<br /> Then try again.",
+              icon: "fa-solid fa-hourglass-half",
             };
-            console.error(basics.error);
           }
+
+          if (
+            error.payload.code == -4 // Insufficient funds
+          ) {
+            basics.error = {
+              headline: "Not enough DFI to vote",
+              text: `You do not have enough DFI on your wallet. Please send some DFI to your wallet and try again. Approximately 1 DFI per master node should be enough. Voting will cost only a tiny fraction of a DFI but the wallet blocks more just to be safe.`,
+              icon: "fa-solid fa-coins",
+            };
+          }
+
+          if (basics.error == null) {
+            basics.error = {
+              headline: "Unknown Error",
+              text: `Error message: ${error.payload.message}`,
+            };
+          }
+          console.error(basics.error);
         }
       })
     );

@@ -41,7 +41,7 @@
 									dense
 									color="primary"
 									unelevated
-									label="Open Details (Reddit)"
+									label="View Details"
 									@click="openURL(proposal.context)"
 									class="full-width"
 									icon="fa-regular fa-window-restore"
@@ -99,10 +99,7 @@
 									label="Vote YES"
 									icon="fa-regular fa-square-check"
 									:loading="masternodes.active.length == 0"
-									@click="
-										vote(proposal.proposalId, 'yes');
-										decision = 'yes';
-									"
+									@click="vote(proposal.proposalId, 'yes')"
 								/>
 
 								<q-btn
@@ -114,10 +111,7 @@
 									icon="fa-solid fa-ghost"
 									disable
 									:loading="masternodes.active.length == 0"
-									@click="
-										vote(proposal.proposalId, 'neutral');
-										decision = 'neutral';
-									"
+									@click="vote(proposal.proposalId, 'neutral')"
 								/>
 
 								<q-btn
@@ -128,10 +122,7 @@
 									label="Vote NO"
 									icon="fa-regular fa-rectangle-xmark"
 									:loading="masternodes.active.length == 0"
-									@click="
-										vote(proposal.proposalId, 'no');
-										decision = 'no';
-									"
+									@click="vote(proposal.proposalId, 'no')"
 								/>
 							</div>
 						</q-card-section>
@@ -309,10 +300,11 @@ export default defineComponent({
 		});
 		const sendingDecisionsToChain = ref(false);
 
-		async function vote(proposalId, decision) {
+		async function vote(proposalId, decisionString) {
 			sendingDecisionsToChain.value = true;
-			txIds.value = await proposals.vote(proposalId, decision);
-			console.log(txIds);
+			txIds.value = await proposals.vote(proposalId, decisionString);
+			console.log(txIds.value);
+			if (txIds.value.length > 0) decision.value = decisionString;
 			sendingDecisionsToChain.value = false;
 		}
 

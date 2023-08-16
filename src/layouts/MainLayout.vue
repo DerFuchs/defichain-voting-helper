@@ -65,16 +65,20 @@
 					<q-card-section horizontal>
 						<q-card-section>
 							<q-icon
-								name="fa-solid fa-unlock-keyhole"
+								:name="
+									basics.error?.icon
+										? basics.error.icon
+										: 'fa-solid fa-circle-exclamation'
+								"
 								size="xl"
-								class="jelly-gradient-text"
-							></q-icon>
+								class="jelly-gradient-text q-pa-md"
+							/>
 						</q-card-section>
 						<q-card-section>
 							<div v-html="basics.error.text"></div>
 						</q-card-section>
 					</q-card-section>
-					<q-card-action>
+					<q-card-actions>
 						<q-btn
 							class="full-width"
 							unelevated
@@ -82,7 +86,7 @@
 							label="okay"
 							@click="basics.error = null"
 						/>
-					</q-card-action>
+					</q-card-actions>
 				</q-card>
 			</q-dialog>
 
