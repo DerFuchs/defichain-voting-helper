@@ -2,10 +2,15 @@
 
 A desktop app for easy voting with your DeFiChain Masternodes.
 
+## tl;dr
+
+Use this app on the computer which is also running the DeFiChain full wallet which is connected to your master nodes.
+
 ## Restrictions & How It Works
 
-This app needs a Full Wallet running on the same computer. This Full Wallet has to hold the OWNER address(es) of the masternode(s).
-That's neccessary because this app connects to the DeFiChain Node, running underneath the Full Wallet and performs actions remotely. It's basically like you're executing commands via CMD, but completely automated.
+This app needs a full wallet running on the same computer. This full wallet has to hold the OWNER address(es) of the masternode(s). That's usually the setup you already have when you are running master nodes.
+
+That full wallet is neccessary because this app connects to the DeFiChain Node, running underneath the full wallet and performs actions remotely. It's basically like you're executing commands via CMD, but automated.
 
 ## Download
 
